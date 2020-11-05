@@ -39,10 +39,12 @@ public class TicTacToeGame
 		}
 	}
 //UC-3 Displaying Tictactoeboard
-	public static void displayBoard() {
-		System.out.println("Displaying TicTacToe BOard");
-		System.out.println("__|__|__");
-		System.out.println("__|__|__");
-		System.out.println("  |  |  ");
+	public static void displayBoard(char [] board) {
+		System.out.println("Displaying TicTacToe Board");
+		for(int index=1;index<board.length;index=index++) {
+			System.out.println("|"+board[index]+"|"+board[index+1]+"|"+board[index+2]);
+			System.out.println(" -----------------------");
+		}
+		
 	}
 }

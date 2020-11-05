@@ -5,7 +5,7 @@ public class Mainclass {
 	public static void main(String[] args) {
 		TicTacToeGame.board();
 		TicTacToeGame.playerchoice();
-		TicTacToeGame.displayBoard();
+		TicTacToeGame.displayBoard(TicTacToeGame.board());
 	}
 
 }
