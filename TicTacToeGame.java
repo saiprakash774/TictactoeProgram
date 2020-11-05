@@ -38,4 +38,11 @@ public class TicTacToeGame
 			System.out.println("Invalid Input Enter your choice again");
 		}
 	}
+//UC-3 Displaying Tictactoeboard
+	public static void displayBoard() {
+		System.out.println("Displaying TicTacToe BOard");
+		System.out.println("__|__|__");
+		System.out.println("__|__|__");
+		System.out.println("  |  |  ");
+	}
 }
