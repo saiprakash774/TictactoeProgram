@@ -16,22 +16,19 @@ class TicTacToeGame
 //UC-2 Player Choosing the Letter
 	public static void  playerchoice() 
 	{
-		char player;
 		char computer;
 		while(true) 
 		{
 			System.out.println("Enter your choice X or O ");
-			char value=choice.next().toUpperCase().charAt(0);
-			if(value=='X') 
+			char player=choice.next().toUpperCase().charAt(0);
+			if(player=='X')
 			{
-				player='X';
 				computer='O';
 				System.out.println("players choice is "+player+" and Computer choice is " +computer);
 				break;
 			}
-			else if(value=='O') 
+			else if(player=='O') 
 			{
-				player='O';
 				computer='X';
 				System.out.println(" players choice is "+player+" and Computer choice is " +computer);
 				break;
@@ -46,9 +43,6 @@ class TicTacToeGame
 		for(int index1=1;index1<board.length;index1=index1+3) {
 			System.out.println("|"+board[index1]+"|"+board[index1+1]+"|"+board[index1+2]);
 			System.out.println(" ------------");
-		}
-		
-		
-	}
-	
+		}	
+	}	
 }
