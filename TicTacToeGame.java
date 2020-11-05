@@ -1,11 +1,11 @@
 package workshop;
 import java.util.Scanner;
-public class TicTacToeGame 
+class TicTacToeGame 
 {
 //UC-1 Create TictacToe Board
 	public static char[] board() 
 	{
-		char board_cell[]=new char[10];
+		char [] board_cell=new char[10];
 		for(int index=1;index<board_cell.length;index++) 
 		{
 			board_cell[index]=' ';
@@ -18,33 +18,37 @@ public class TicTacToeGame
 	{
 		char player;
 		char computer;
-		while(true) {
-		System.out.println("Enter your choice X or O ");
-		char value=choice.next().toUpperCase().charAt(0);
-		if(value=='X') 
+		while(true) 
 		{
-			player='X';
-			computer='O';
-			System.out.println("players choice is "+player+" and Computer choice is " +computer);
-			break;
-		}
-		else if(value=='O') {
-			player='O';
-			computer='X';
-			System.out.println(" players choice is "+player+" and Computer choice is " +computer);
-			break;
-		}
-		else
-			System.out.println("Invalid Input Enter your choice again");
+			System.out.println("Enter your choice X or O ");
+			char value=choice.next().toUpperCase().charAt(0);
+			if(value=='X') 
+			{
+				player='X';
+				computer='O';
+				System.out.println("players choice is "+player+" and Computer choice is " +computer);
+				break;
+			}
+			else if(value=='O') 
+			{
+				player='O';
+				computer='X';
+				System.out.println(" players choice is "+player+" and Computer choice is " +computer);
+				break;
+			}
+			else
+				System.out.println("Invalid Input Enter your choice again");
 		}
 	}
 //UC-3 Displaying Tictactoeboard
-	public static void displayBoard(char [] board) {
+	public static void displayBoard(char[] board) {
 		System.out.println("Displaying TicTacToe Board");
-		for(int index=1;index<board.length;index=index++) {
-			System.out.println("|"+board[index]+"|"+board[index+1]+"|"+board[index+2]);
-			System.out.println(" -----------------------");
+		for(int index1=1;index1<board.length;index1=index1+3) {
+			System.out.println("|"+board[index1]+"|"+board[index1+1]+"|"+board[index1+2]);
+			System.out.println(" ------------");
 		}
 		
+		
 	}
+	
 }
