@@ -6,6 +6,7 @@ public class Mainclass {
 		TicTacToeGame.playerchoice();
 		TicTacToeGame.displayBoard(TicTacToeGame.board());
 		TicTacToeGame.playgame(TicTacToeGame.board());
+		TicTacToeGame.winnerdeclare(TicTacToeGame.board());
 	}
 
 }

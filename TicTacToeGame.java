@@ -18,7 +18,6 @@ class TicTacToeGame
 //UC-2 Player Choosing the Letter
 	public static void  playerchoice() 
 	{
-	// 	char computer;
 		while(true) 
 		{
 			System.out.println("Enter your choice X or O ");
@@ -51,37 +50,82 @@ class TicTacToeGame
 	}
  //UC-4 Play the game and display pararllely
 	static Scanner cellnumber = new Scanner(System.in); 
-	static int result=0;
+	private static int userturn = 0;
+	private static int computerturn=0;
 	public static void playgame(char[] board) 
 	{
-		int userturn = 0;
-		int computerturn=0;
-		while(computerturn<=4) {
-		while(userturn<=5) {
-			System.out.println("Enter the cell number to place your key"+player);
-			int cell_value=cellnumber.nextInt();
-			if(board[cell_value]==' ') {
-				//board[cell_value]=TicTacToeGame.player;
-				board[cell_value]=player;	
-				TicTacToeGame.displayBoard(board);
-				userturn++;
+		while(userturn<=5 && computerturn<=4) 
+		{
+			while(userturn<=5) 
+			{
+				System.out.println("Enter the cell number to place your key"+player);
+				int cell_value=cellnumber.nextInt();
+				if(board[cell_value]==' ') {
+					board[cell_value]=player;	
+					TicTacToeGame.displayBoard(board);
+					userturn++;
+					break;
+				}
+				else
+				{
+					System.out.println(" cell is already filled or invalid cell number entered");
+				}
+			}
+			while(computerturn<=4) 
+			{
+				int cell_value=(int)Math.floor((Math.random()*10)+1)%10;
+				if(board[cell_value]==' ') 
+				{
+					board[cell_value]=computer;
+					TicTacToeGame.displayBoard(board);
+					computerturn++;
+					 break;
+				}
+				
+			}
+			
+		}
+	}
+	public static void winnerdeclare(char [] board) 
+	{
+		System.out.println("HI");
+		int result=0;
+		for(int index=1;index<board.length;index=index+3) 
+		{
+			
+			if(board[index]==player&&board[index+1]==player&&board[index+2]==player) 
+			{
+				System.out.println(player+" is winner");
+				result=1;
 				break;
 			}
-			else
+			else if(board[index]==player&&board[index+3]==player&&board[index+6]==player)
 			{
-				System.out.println(" cell is already filled or invalid cell number entered");
+				System.out.println(player+" is winner");
+				result=1;
+				break;
 			}
+			else if(board[index]==computer&&board[index+1]==computer&&board[index+2]==computer)
+			{
+				System.out.println(computer+" is winner");
+				break;
+			}
+			else if(board[index]==computer&&board[index+3]==computer&&board[index+6]==computer) 
+			{
+				System.out.println(computer+" is winner");
+				result=1;
+				break;
+			}
+			
 		}
-		while(computerturn<=4) {
-		int cell_value=(int)Math.floor((Math.random()*10)+1)%10;
-		if(board[cell_value]==' ') {
-			board[cell_value]=computer;
-			TicTacToeGame.displayBoard(board);
-			computerturn++;
-			 break;
+		if(result==0) 
+		{
+			if(board[1]==player&&board[5]==player&&board[9]==player || board[3]==player&&board[5]==player&&board[7]==player)
+				System.out.println(player+" is winner");
+			else if(board[1]==computer&&board[5]==computer&&board[9]==computer || board[3]==computer&&board[5]==computer&&board[7]==computer)
+				System.out.println(computer+" is winner");
+			else
+				System.out.println("Game is Draw");
 		}
-		}
-		}
-		
 	}
 }
