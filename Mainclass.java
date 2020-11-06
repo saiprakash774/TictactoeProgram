@@ -8,5 +8,4 @@ public class Mainclass {
 		TicTacToeGame.playgame(TicTacToeGame.board());
 		TicTacToeGame.winnerdeclare(TicTacToeGame.board());
 	}
-
 }

@@ -54,7 +54,7 @@ class TicTacToeGame
 	private static int computerturn=0;
 	public static void playgame(char[] board) 
 	{
-		while(userturn<=5 && computerturn<=4) 
+		while(userturn<=5) 
 		{
 			while(userturn<=5) 
 			{
@@ -81,18 +81,14 @@ class TicTacToeGame
 					computerturn++;
 					 break;
 				}
-				
 			}
-			
 		}
 	}
 	public static void winnerdeclare(char [] board) 
 	{
-		System.out.println("HI");
 		int result=0;
 		for(int index=1;index<board.length;index=index+3) 
 		{
-			
 			if(board[index]==player&&board[index+1]==player&&board[index+2]==player) 
 			{
 				System.out.println(player+" is winner");
@@ -115,8 +111,7 @@ class TicTacToeGame
 				System.out.println(computer+" is winner");
 				result=1;
 				break;
-			}
-			
+			}		
 		}
 		if(result==0) 
 		{
