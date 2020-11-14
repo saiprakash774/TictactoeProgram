@@ -3,9 +3,9 @@ import java.util.Scanner;
 class TicTacToeGame 
 {
 //UC-1 Create TictacToe Board
-	public static char[] board() 
+	static char [] board_cell=new char[10];
+	public char[] board() 
 	{
-		char [] board_cell=new char[10];
 		for(int index=1;index<board_cell.length;index++) 
 		{
 			board_cell[index]=' ';
@@ -16,7 +16,7 @@ class TicTacToeGame
 	private static char player;
 	private static char computer;
 //UC-2 Player Choosing the Letter
-	public static void  playerchoice() 
+	public void  playerchoice() 
 	{
 		while(true) 
 		{
@@ -41,10 +41,10 @@ class TicTacToeGame
 		}
 	}
 //UC-3 Displaying Tictactoeboard
-	public static void displayBoard(char[] board) {
+	public void displayBoard() {
 		System.out.println("Displaying TicTacToe Board");
-		for(int index1=1;index1<board.length;index1=index1+3) {
-			System.out.println("|"+board[index1]+"|"+board[index1+1]+"|"+board[index1+2]);
+		for(int index1=1;index1<board_cell.length;index1=index1+3) {
+			System.out.println("|"+board_cell[index1]+"|"+board_cell[index1+1]+"|"+board_cell[index1+2]);
 			System.out.println(" ------------");
 		}	
 	}
@@ -52,17 +52,21 @@ class TicTacToeGame
 	static Scanner cellnumber = new Scanner(System.in); 
 	private static int userturn = 0;
 	private static int computerturn=0;
-	public static void playgame(char[] board) 
+	private static int result=0;
+	public  void playgame() 
 	{
-		while(userturn<=5) 
+		while(userturn<5) 
 		{
 			while(userturn<=5) 
 			{
 				System.out.println("Enter the cell number to place your key"+player);
 				int cell_value=cellnumber.nextInt();
-				if(board[cell_value]==' ') {
-					board[cell_value]=player;	
-					TicTacToeGame.displayBoard(board);
+				if(board_cell[cell_value]==' ') {
+					board_cell[cell_value]=player;	
+					displayBoard();
+					winnerdeclare();
+					if(result==1)
+						throw new ArithmeticException("winner is declared");
 					userturn++;
 					break;
 				}
@@ -71,56 +75,77 @@ class TicTacToeGame
 					System.out.println(" cell is already filled or invalid cell number entered");
 				}
 			}
-			while(computerturn<=4) 
+			while(computerturn<4) 
 			{
 				int cell_value=(int)Math.floor((Math.random()*10)+1)%10;
-				if(board[cell_value]==' ') 
+				if(board_cell[cell_value]==' ') 
 				{
-					board[cell_value]=computer;
-					TicTacToeGame.displayBoard(board);
+					board_cell[cell_value]=computer;
+					displayBoard();
+					winnerdeclare();
+					if(result==1)
+						throw new ArithmeticException("winner is declared");
 					computerturn++;
 					 break;
 				}
 			}
 		}
+		if(result==0)
+			System.out.println("Game is Draw");
 	}
-	public static void winnerdeclare(char [] board) 
+	
+	public void winnerdeclare() 
 	{
-		int result=0;
-		for(int index=1;index<board.length;index=index+3) 
+	row_check();	
+	column_check();
+	daigonal_check();
+	}
+	private static void row_check()
+	{
+		for(int index=1;index<board_cell.length;index=index+3) 
 		{
-			if(board[index]==player&&board[index+1]==player&&board[index+2]==player) 
+			if(board_cell[index]==player && board_cell[index+1]==player && board_cell[index+2]==player) 
 			{
 				System.out.println(player+" is winner");
 				result=1;
 				break;
 			}
-			else if(board[index]==player&&board[index+3]==player&&board[index+6]==player)
-			{
-				System.out.println(player+" is winner");
-				result=1;
-				break;
-			}
-			else if(board[index]==computer&&board[index+1]==computer&&board[index+2]==computer)
-			{
-				System.out.println(computer+" is winner");
-				break;
-			}
-			else if(board[index]==computer&&board[index+3]==computer&&board[index+6]==computer) 
+			else if(board_cell[index]==computer && board_cell[index+1]==computer && board_cell[index+2]==computer)
 			{
 				System.out.println(computer+" is winner");
 				result=1;
 				break;
-			}		
+			}
 		}
-		if(result==0) 
-		{
-			if(board[1]==player&&board[5]==player&&board[9]==player || board[3]==player&&board[5]==player&&board[7]==player)
+	}
+	private static void column_check() 
+	{
+		for(int index=1;index<=3;index++) {
+			if(board_cell[index]==player && board_cell[index+3]==player && board_cell[index+6]==player) 
+			{
 				System.out.println(player+" is winner");
-			else if(board[1]==computer&&board[5]==computer&&board[9]==computer || board[3]==computer&&board[5]==computer&&board[7]==computer)
+				result=1;
+				break;
+			}
+			else if(board_cell[index]==computer && board_cell[index+3]==computer && board_cell[index+6]==computer)
+			{
 				System.out.println(computer+" is winner");
-			else
-				System.out.println("Game is Draw");
+				result=1;
+				break;
+			}	
+		}	
+	}
+	private static void daigonal_check() 
+	{
+		if(board_cell[1]==player && board_cell[5]==player && board_cell[9]==player || board_cell[3]==player && board_cell[5]==player && board_cell[7]==player)
+		{
+			System.out.println(player+" is winner");
+			result=1;
+		}
+		else if(board_cell[1]==computer && board_cell[5]==computer && board_cell[9]==computer||board_cell[3]==computer && board_cell[5]==computer && board_cell[7]==computer) 
+		{
+			System.out.println(computer+" is winner");
+			result=1;
 		}
 	}
 }
